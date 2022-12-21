@@ -2,7 +2,7 @@ package level1.lesson2;
 import java.util.Scanner;
 
 public class HomeWorkApp {
-    public static void HomeWork(String[] args) {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Решение задачи 4");
         System.out.print("\n введите фразу");
