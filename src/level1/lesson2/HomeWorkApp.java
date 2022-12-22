@@ -66,9 +66,9 @@ public class HomeWorkApp {
 
     public static boolean task3(int tally1) {
         if (tally1>=0){
-            return true;
-        }else {
             return false;
+        }else {
+            return true;
         }
     }
     public static String task4(int tally2, String line){
