@@ -117,8 +117,6 @@ public class HomeWork3 {
         System.out.print("\n" + " Введите число");
         int n = in.nextInt();
         int a = arr.length-n;
-        int d = Math.abs(a);
-        int b = Math.abs(n);
         System.out.println(Arrays.toString(arr));
         System.out.println(Arrays.toString(arr8));
             System.arraycopy(arr, n, arr8, 0, a);
