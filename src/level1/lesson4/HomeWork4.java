@@ -1,26 +1,22 @@
 package level1.lesson4;
-
 import java.util.Random;
 import java.util.Scanner;
-
 public class HomeWork4 {
-    //Создание игрового поля
+    public static int SIZE = 3;
+    public static int DOTS_TO_WIN = 3;
+    public static final char DOT_EMPTY = '•';
+    public static final char DOT_X = 'X';
+    public static final char DOT_O = 'O';
     public static char[][] map;
-    public static final int SIZE = 3;
-    public static final int DOT_WIN = 3;
-    //Ячейки  поля
-    public static final char DOT_empty='*';
-    public static final char DOT_X ='X';
-    public static final char DOT_Y='O';
-    public static final Scanner in = new Scanner(System.in);
-    public static final Random random = new Random();
+    public static Scanner sc = new Scanner(System.in);
+    public static Random rand = new Random();
     public static void main(String[] args) {
-        initmap();
-        printmap();
-        while (true){
-            movehuman();
-            printmap();
-            if(checkWin(DOT_X)) {
+        initMap();
+        printMap();
+        while (true) {
+            humanTurn();
+            printMap();
+            if (checkWin(DOT_X)) {
                 System.out.println("Победил человек");
                 break;
             }
@@ -28,8 +24,9 @@ public class HomeWork4 {
                 System.out.println("Ничья");
                 break;
             }
-            movecomputer();
-            if (checkWin(DOT_Y)){
+            aiTurn();
+            printMap();
+            if (checkWin(DOT_O)) {
                 System.out.println("Победил компьютер");
                 break;
             }
@@ -38,73 +35,102 @@ public class HomeWork4 {
                 break;
             }
         }
+        System.out.println("Игра закончена");
     }
-    // Проверка победы
     public static boolean checkWin(char symb) {
-        if (map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
-        if (map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
-        if (map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) return true;
-        if (map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) return true;
-        if (map[0][1] == symb && map[1][1] == symb && map[2][1] == symb) return true;
-        if (map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) return true;
-        if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
-        if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
-        return false;
-    }
-    //Проверка заполниения поля
-    public static boolean isMapFull() {
+        //горизонтально
         for (int i = 0; i < SIZE; i++) {
+            int k = 0;
             for (int j = 0; j < SIZE; j++) {
-                if (map[i][j] == DOT_empty) return false;
+                if (map[i][j] == symb) {
+                    k++;
+                } else if (map[i][j] != symb && k < DOTS_TO_WIN) {
+                    k = 0;
+                }
+                if (k >= DOTS_TO_WIN) {
+                    return true;
+                }
             }
         }
-        return true;
+        //вертикаль
+        for (int i =0;i<SIZE;i++){
+            int k =0;
+            for (int j =0; j<SIZE;j++){
+                if (map[j][i]==symb){
+                    k++;
+                }else if (map[j][i] != symb&& k<DOTS_TO_WIN){
+                    k=0;
+                }
+                if (k>=DOTS_TO_WIN){
+                    return true;
+                }
+            }
+        }
+        //диагональ
+        int diag1 = 0;
+        int diag2 = 0;
+        for (int i = 0; i < SIZE; i++) {
+
+            if (map[i][i] == symb) {
+                diag1++;
+            }
+            if (map[i][SIZE - i - 1] == symb) {
+                diag2++;
+            }
+        }
+        if (diag1 >=DOTS_TO_WIN|| diag2 >=DOTS_TO_WIN) {
+            return true;
+        }
+        return false;
     }
-    //Ход человека
-    public static void movehuman() {
+        public static boolean isMapFull () {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (map[i][j] == DOT_EMPTY) return false;
+                }
+            }
+            return true;
+        }
+    public static void aiTurn() {
+        int x, y;
+        do {
+            x = rand.nextInt(SIZE);
+            y = rand.nextInt(SIZE);
+        } while (!isCellValid(x, y));
+        System.out.println("Компьютер походил в точку " + (x + 1) + " " + (y +1));
+                map[y][x] = DOT_O;
+    }
+    public static void humanTurn() {
         int x, y;
         do {
             System.out.println("Введите координаты в формате X Y");
-            x = in.nextInt() - 1;
-            y = in.nextInt() - 1;
-        } while (!isCellValid(x,y));
-            map[x][y] = DOT_X;
+            x = sc.nextInt() - 1;
+            y = sc.nextInt() - 1;
+        } while (!isCellValid(x, y)); // while(isCellValid(x, y) == false)
+        map[y][x] = DOT_X;
     }
-    //Проверка ячеек
-    public static boolean isCellValid(int x, int y){
-        if(x<0||x>=SIZE||y<0||y>=SIZE)return false;
-        if (map[y][x] == DOT_empty)return true;
+    public static boolean isCellValid(int x, int y) {
+        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
+        if (map[y][x] == DOT_EMPTY) return true;
         return false;
     }
-    //Ход комп.
-    public static void movecomputer(){
-        int x,y;
-        do{
-            x=random.nextInt();
-            y=random.nextInt();
-        }while (!isCellValid(x,y));
-        System.out.println("Компьютер походил в точку " + (x + 1) + " " + (y + 1));
-        map[y][x] = DOT_Y;
-    }
-// Инициализация поля
-    public static void  initmap(){
+    public static void initMap() {
         map = new char[SIZE][SIZE];
-        for (int i = 0;i<SIZE;i++){
-            for (int j = 0;j<SIZE;j++){
-                map[i][j]= DOT_empty;
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                map[i][j] = DOT_EMPTY;
             }
         }
     }
-    //Вывод поля в консоль
-    public static void printmap(){
-        for (int i =0;i<=SIZE;i++){
-            System.out.print(i+" ");
+    public static void printMap() {
+        for (int i = 0; i <= SIZE; i++) {
+            System.out.print(i + " ");
         }
         System.out.println();
-        for (int i = 0;i<SIZE;i++){
-            System.out.print((i+1)+" ");
-            for (int j=0;j<SIZE;j++){
-                System.out.print(map[i][j]+" ");
+        for (int i = 0; i < SIZE; i++) {
+            System.out.print((i + 1) + " ");
+            for (int j = 0; j < SIZE; j++) {
+                System.out.print(map[i][j] + " ");
             }
             System.out.println();
         }
