@@ -1,5 +1,4 @@
 package level1.lesson5;
-
 public class HomeWork5 {
     public static void main(String[] args) {
         staff[] staffs = new staff[5];

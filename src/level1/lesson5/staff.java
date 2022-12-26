@@ -1,6 +1,4 @@
 package level1.lesson5;
-
-
 public class staff {
     private String name;
     private String position;
@@ -8,7 +6,7 @@ public class staff {
     private String phone;
     private int salary;
     private int age;
-    public staff (String name, String position, String email, String phone, int salary, int age) {
+    public staff(String name, String position, String email, String phone, int salary, int age) {
         this.name = name;
         this.position = position;
         this.email = email;
@@ -16,15 +14,10 @@ public class staff {
         this.salary = salary;
         this.age = age;
     }
-
     public int getAge() {
         return age;
     }
-
-    //public void setAge(int age) {
-      //  this.age = age;
-    //}
-
+    //вывод консоль
     @Override
     public String toString() {
         return "staff{" +
