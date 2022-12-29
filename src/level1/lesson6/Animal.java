@@ -1,11 +1,11 @@
 package level1.lesson6;
 
 public class Animal implements Cloneable {
-    protected String type;       // вид животного (наименование класса эт. хорошо но оно видно только программе)
-    protected String name;       // имя или кличка животного (если есть)
-    protected int swims;         // возможность животного плавать    (численная характеристика, метры непрерывного интенсивного плавания)
-    protected int run;           // возможность животного бегать     (численная характеристика, метры непрерывного быстрого бега)
-    private static int count;    // счетчик количества созданных животных (в том числе клонированных) не стал тут разделять.
+    protected String type;
+    protected String name;
+    protected int swims;
+    protected int run;
+    private static int count;
 
     public Animal() {
         count++;
