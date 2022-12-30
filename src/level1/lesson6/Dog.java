@@ -3,11 +3,11 @@ package level1.lesson6;
 public class Dog extends Animal {
     private static int count;
 
-    public Dog(String type, String name, int swims, int run) {
+    public Dog(String type, String name) {
         this.type = type;
         this.name = name;
-        this.swims = swims;
-        this.run = run;
+        this.swims = 10;
+        this.run = 500;
         count++;
     }
 
