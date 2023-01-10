@@ -1,4 +1,5 @@
 package level1.lesson8;
+
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
@@ -7,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class HomeWork8 extends JFrame {
     private int value;
+
     public HomeWork8(int initialValue) {
         setBounds(500, 500, 300, 120);
         setTitle("Simple Counter");
