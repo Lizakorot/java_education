@@ -11,7 +11,7 @@ public class Cat {
         this.hunger = hunger;
         this.satiety =satiety;
     }
-    public void eat(Plate plate){
-            plate.decreaseFood(hunger);
+    public void Eat(Plate plate){
+            plate.DecreaseFood(hunger);
     }
 }
