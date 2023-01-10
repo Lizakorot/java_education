@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 public class HomeWork8 extends JFrame {
     private int value;
-
     public HomeWork8(int initialValue) {
         setBounds(500, 500, 300, 120);
         setTitle("Simple Counter");
