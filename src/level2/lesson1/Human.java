@@ -4,20 +4,15 @@ public class Human {
     protected String name;
     protected int run;
     protected int jump;
-    public Human(String name){
-        this.name=name;
-        this.run=300;
-        this.jump=10;
+
+    public Human(String name, int run, int jump) {
+        this.name = name;
+        this.run = run;
+        this.jump = jump;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("human{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", run=").append(run);
-        sb.append(", jump=").append(jump);
-        sb.append('}');
-        return sb.toString();
+    public String getName() {
+        return name;
     }
 
     public int getRun() {
@@ -27,10 +22,18 @@ public class Human {
     public int getJump() {
         return jump;
     }
-    public void barr(Wall wall){
-        wall.overcoming(jump);
+    public void jog (Treadmill treadmill){
+        if (getRun()>=treadmill.getLength()){
+            System.out.println(name+" пробежал");
+        }else {
+            System.out.println(name+" не пробежал");
+        }
     }
-    public void trac (Treadmill treadmill) {
-        treadmill.distance(run);
+    public void barrier(Wall wall) {
+        if (getJump() >= wall.getWidth()) {
+            System.out.println(name+" перепрыгнул");
+        }else {
+            System.out.println(name+" не перепрыгнул");
+        }
     }
 }

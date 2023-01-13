@@ -1,28 +1,43 @@
 package level2.lesson1;
 
+import java.util.StringJoiner;
+
 public class Cat {
     protected String name;
     protected int run;
     protected int jump;
-    public Cat(String name){
-        this.name=name;
-        this.run=500;
-        this.jump=30;
+
+    public Cat(String name, int run, int jump) {
+        this.name = name;
+        this.run = run;
+        this.jump = jump;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Cat{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", run=").append(run);
-        sb.append(", jump=").append(jump);
-        sb.append('}');
-        return sb.toString();
+    public String getName() {
+        return name;
     }
-    public void barri(Wall wall){
-        wall.overcoming(jump);
+
+    public int getRun() {
+        return run;
     }
-    public void tra (Treadmill treadmill) {
-        treadmill.distance(run);
+
+    public int getJump() {
+        return jump;
+    }
+
+    public void Jog(Treadmill treadmill)  {
+        if (getRun()>=treadmill.getLength()){
+            System.out.println(name+" пробежал");
+        }else {
+            System.out.println(name+" не пробежал");
+        }
+    }
+    public void barrier(Wall wall) {
+        if (getJump() >= wall.getWidth()) {
+            System.out.println(name+" перепрыгнул");
+        }else {
+            System.out.println(name+" не перепрыгнул");
+        }
     }
 }
+
