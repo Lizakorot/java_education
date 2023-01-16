@@ -9,7 +9,7 @@ public class Cat extends Test {
         if (getTestRun() >= treadmill[i].getLength())
             System.out.println("Кот " + getName() + " СМОГ пробежать " + treadmill[i].getLength() + " метров");
          else {
-            System.out.println("Кот " + getName() + " НЕ СМОГ пробежать " + treadmill[i].getLength() + " метров");
+            break;
         }
     }
     public void jumpWall(Wall[] wall) {
@@ -17,7 +17,7 @@ public class Cat extends Test {
         if (getTestJump() >= wall[i].getWidth())
             System.out.println("Кот " + getName() + " СМОГ перепрыгнуть " + wall[i].getWidth());
         else {
-            System.out.println("Кот " + getName() + " НЕ СМОГ перепрыгнуть " + wall[i].getWidth());
+           break;
         }
     }
 }

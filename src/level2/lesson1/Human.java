@@ -8,13 +8,16 @@ public class Human extends Test{
         for (int i =0;i<treadmill.length;i++)
         if (getTestRun() >= treadmill[i].getLength())
             System.out.println("Человек" + getName() + " СМОГ пробежать " + treadmill[i].getLength());
-        else System.out.println("Человек " + getName() + " НЕ СМОГ пробежать " + treadmill[i].getLength());
+        else
+            break;
     }
 
     public void jumpWall(Wall[] wall) {
         for (int i =0; i<wall.length;i++)
         if (getTestJump() >= wall[i].getWidth())
             System.out.println("Человек " + getName() + " СМОГ перепрыгнуть " + wall[i].getWidth());
-        else System.out.println("Человек " + getName() + " НЕ СМОГ перепрыгнуть " + wall[i].getWidth());
+        else
+            break;
+
     }
 }
