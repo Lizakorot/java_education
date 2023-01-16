@@ -1,39 +1,20 @@
 package level2.lesson1;
 
-public class Human {
-    protected String name;
-    protected int run;
-    protected int jump;
-
-    public Human(String name, int run, int jump) {
-        this.name = name;
-        this.run = run;
-        this.jump = jump;
+public class Human extends Test{
+    public Human(String name, int testrun, int testjump) {
+        super(name,testrun,testjump);
+    }
+    public void runTreadmill(Treadmill[] treadmill) {
+        for (int i =0;i<treadmill.length;i++)
+        if (getTestRun() >= treadmill[i].getLength())
+            System.out.println("Человек" + getName() + " СМОГ пробежать " + treadmill[i].getLength());
+        else System.out.println("Человек " + getName() + " НЕ СМОГ пробежать " + treadmill[i].getLength());
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getRun() {
-        return run;
-    }
-
-    public int getJump() {
-        return jump;
-    }
-    public void jog (Treadmill treadmill){
-        if (getRun()>=treadmill.getLength()){
-            System.out.println(name+" пробежал");
-        }else {
-            System.out.println(name+" не пробежал");
-        }
-    }
-    public void barrier(Wall wall) {
-        if (getJump() >= wall.getWidth()) {
-            System.out.println(name+" перепрыгнул");
-        }else {
-            System.out.println(name+" не перепрыгнул");
-        }
+    public void jumpWall(Wall[] wall) {
+        for (int i =0; i<wall.length;i++)
+        if (getTestJump() >= wall[i].getWidth())
+            System.out.println("Человек " + getName() + " СМОГ перепрыгнуть " + wall[i].getWidth());
+        else System.out.println("Человек " + getName() + " НЕ СМОГ перепрыгнуть " + wall[i].getWidth());
     }
 }

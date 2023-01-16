@@ -1,6 +1,6 @@
 package level2.lesson1;
 
-public class Treadmill {
+public class Treadmill  {
     protected int length;
 
     public Treadmill(int length) {
